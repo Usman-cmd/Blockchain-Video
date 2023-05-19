@@ -128,6 +128,10 @@ class App extends Component {
         console.error(error)
         return
       }
+      this.setState({loading: true})
+      this.state.dvideo.methods.uploadVideo(result[0].hash,title).send({from: this.state.account}).on('transactionHash', (hash)=>{
+        this.setState({loading: false})
+      })
 
     })
   }
